@@ -1,4 +1,5 @@
 # adventOfCode
+# 2022
 https://adventofcode.com/
 
 folder = day
