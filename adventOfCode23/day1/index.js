@@ -1,19 +1,19 @@
 import { readFile } from 'fs'
 
 const main = (data) => {
+    //console.log(data[0])
     let sum = 0
     data = data.map(value => {
         let number = ''
         const arr = value.split('')
-        number += arr.find(char => '1234567890'.includes(char))
+        number += arr.find(char => '123456789'.includes(char))
 
         let reverse = arr.reverse()
-        number += reverse.find(char => '1234567890'.includes(char))
+        number += reverse.find(char => '123456789'.includes(char))
 
         sum += parseInt(number)
         return parseInt(number)
     })
-    console.log(data)
     console.log(sum)
 }
 
@@ -51,11 +51,11 @@ const partTwo = (data) => {
         let string = ''
         
         for (let char of row) {
-            if (!'1234567890'.includes(char)) {
+            if (!'123456789'.includes(char)) {
                 string += char
-                const found = numbers.find(num => string.includes(num))
+                const found = numbers.find(num => string.toLowerCase().includes(num))
                 if (found !== undefined) {
-                    row = row.replace(found, getNumber(found)+string)
+                    row = row.replace(found, string+getNumber(found)+string)
                     string = ''
                     break
                 }
@@ -63,11 +63,11 @@ const partTwo = (data) => {
         }
         let reverse = row.split('').reverse()
         for (let char of reverse) {
-            if (!'1234567890'.includes(char)) {
+            if (!'123456789'.includes(char)) {
                 string = char + string
-                const found = numbers.find(num => string.includes(num))
+                const found = numbers.find(num => string.toLowerCase().includes(num))
                 if (found !== undefined) {
-                    row = row.replace(found, string+getNumber(found))
+                    row = row.replace(found, string+getNumber(found)+string)
                     string = ''
                     break
                 }
@@ -81,5 +81,6 @@ const partTwo = (data) => {
 
 readFile(`day1/input.txt`, "utf8", (err, data) => {
     if (err) console.log(err)
+    //data = data.replace('one', 'one1one').replace('two', 'two2two').replace('three', 'three3three').replace('four', 'four4four').replace('five','five5five').replace('six', 'six6six').replace('seven', 'seven7seven').replace('eight', 'eight8eight').replace('nine', 'nine9nine')
     partTwo(data.split('\n'))
 })
