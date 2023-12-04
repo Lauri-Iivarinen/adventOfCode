@@ -73,7 +73,30 @@ const main = (data) => {
 
 }
 
+const findNumbersNearGear = (data, rowIndex, charIndex) => {
+    
+    return 0
+    //console.log(numberArr)
+}
+
+const partTwo = (data) => {
+    let sum = 0
+    
+    data.forEach((row, rowIndex) => {
+        let gearIndex = 0
+        row = row.split('')
+        row.forEach((char, charIndex)=> {
+            if (char === '*') {
+                //console.log('found * at:', rowIndex, charIndex)
+                sum += findNumbersNearGear(data, rowIndex, charIndex)
+            }
+        })
+    })
+
+    console.log(sum)
+}
+
 readFile(`day${day}/input.txt`, "utf8", (err, data) => {
     if (err) console.log(err)
-    main(data.split('\n'))
+    partTwo(data.split('\n'))
 })
