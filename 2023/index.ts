@@ -1,7 +1,7 @@
 import { readFile } from 'fs'
 const day = 1
 
-const main = (data) => {
+const main = (data: string[]) => {
     
 }
 
