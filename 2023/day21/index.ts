@@ -7,19 +7,15 @@ type Coord = [number, number]
 const findNextSteps = (coord: Coord, data: string[]): Coord[] => {
     let coords: Coord[] = []
     if (coord[0] !== 0 && data[coord[0]-1][coord[1]] !== '#') {
-        //Upper row cant step upwards
         coords.push([coord[0]-1, coord[1]])
     }
     if (coord[0] !== data.length - 1 && data[coord[0]+1][coord[1]] !== '#') {
-        //Bottom row
         coords.push([coord[0]+1, coord[1]])
     }
     if (coord[1] !== 0 && data[coord[0]][coord[1]-1] !== '#') {
-        //Cant check left
         coords.push([coord[0], coord[1]-1])
     }
     if (coord[1] !== data[0].length - 1 && data[coord[0]][coord[1]+1] !== '#') {
-        //Cant check right
         coords.push([coord[0], coord[1]+1])
     }
 
@@ -40,7 +36,6 @@ const main = (data: string[]) => {
         index++
     }
 
-    
     for (let i = 0; i < steps; i++){
         let nextCoords: Coord[] = []
         coords.forEach((coord, j) => {
@@ -51,19 +46,9 @@ const main = (data: string[]) => {
         })
         coords = nextCoords
     }
-    //console.log(coords.findIndex(a => a[0] === 5 && a[1] === 7))
-    let copy = data
-    coords.forEach(coord => {
-        let row = copy[coord[0]]
-        let arow = row.split('')
-        arow[coord[1]] = 'O'
-        row = arow.join().replaceAll(',', '')
-        copy[coord[0]] = row
-    })
-    copy.forEach(row => console.log(row))
+
     console.log(coords.length)
-    //data = data.map(row => row.split(''))
-    //console.log(start)
+
 }
 
 readFile(`day${day}/${fn}.txt`, "utf8", (err, data) => {
