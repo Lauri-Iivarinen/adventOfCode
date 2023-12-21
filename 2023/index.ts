@@ -1,7 +1,6 @@
 import { readFile } from 'fs'
 const day = 1
-const fn = `input
-`
+const fn = 'input'
 
 const main = (data: string[]) => {
     
