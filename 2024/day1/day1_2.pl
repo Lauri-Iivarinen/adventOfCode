@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 open(FH, '<', 'input.txt') or die $!;
 my @lefties = ();
 my %righties = ();
