@@ -2,7 +2,7 @@ from helpers.filehandler import fh
 
 def main():
     f = fh('inputt.txt')
-    rows  = f.get_rows()
+    rows = f.get_rows()
     
 
 if __name__ == '__main__':
