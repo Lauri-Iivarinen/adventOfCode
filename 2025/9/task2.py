@@ -56,21 +56,21 @@ def main(run_visuals: bool = True):
                 from_y = y2
                 to_y = y
 
-            invalid = [v for v in coords if v[0] > from_x and v[0] < to_x and v[1] > from_y and v[1] < to_y]
-            if len(invalid) > 0:
-                continue
-            # syntax could not be worse, oh well
-            bad_x_axis = []
-            bad_y_axis = []
-            bad_x_axis = [v for v in coords if v[1] > from_y and v[1] < to_y and ((pairing[f'{v[0]},{v[1]}'][0][0] >= to_x and v[0] <= from_x) or (pairing[f'{v[0]},{v[1]}'][0][0] <= from_x and v[0] >= to_x))]
-            # Running the visualiser tells us that we could drop this alltogether
-            bad_y_axis = [v for v in coords if v[0] > from_x and v[0] < to_x and ((pairing[f'{v[0]},{v[1]}'][0][1] >= to_y and v[1] <= from_y) or (pairing[f'{v[0]},{v[1]}'][0][1] <= from_y and v[1] >= to_y))]
-
-            if x != x2 and y != y2 and len(bad_x_axis) == 0 and len(bad_y_axis) == 0:
+            if x != x2 and y != y2:
                 area = calc_area(x,y,x2,y2)
                 if area > max_area:
-                    max_area = area
-                    fnd_coords = ((x,y),(x2,y2))
+                    invalid = [v for v in coords if v[0] > from_x and v[0] < to_x and v[1] > from_y and v[1] < to_y]
+                    if len(invalid) > 0:
+                        continue
+                    # syntax could not be worse, oh well
+                    bad_x_axis = []
+                    bad_y_axis = []
+                    bad_x_axis = [v for v in coords if v[1] > from_y and v[1] < to_y and ((pairing[f'{v[0]},{v[1]}'][0][0] >= to_x and v[0] <= from_x) or (pairing[f'{v[0]},{v[1]}'][0][0] <= from_x and v[0] >= to_x))]
+                    # Running the visualiser tells us that we could drop this alltogether
+                    bad_y_axis = [v for v in coords if v[0] > from_x and v[0] < to_x and ((pairing[f'{v[0]},{v[1]}'][0][1] >= to_y and v[1] <= from_y) or (pairing[f'{v[0]},{v[1]}'][0][1] <= from_y and v[1] >= to_y))]
+                    if len(bad_x_axis) == 0 and len(bad_y_axis) == 0:
+                        max_area = area
+                        fnd_coords = ((x,y),(x2,y2))
 
     # correct: 1351617690
     print()
@@ -83,5 +83,5 @@ def main(run_visuals: bool = True):
     
 
 if __name__ == '__main__':
-    #main(False)
-    main(True)
+    main(False)
+    #main(True)
